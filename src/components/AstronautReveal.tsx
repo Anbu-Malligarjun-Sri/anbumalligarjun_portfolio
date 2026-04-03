@@ -203,6 +203,7 @@ export default function AstronautReveal() {
   /* ═══════════════════════════ JSX ═══════════════════════════ */
   return (
     <section
+      id="about"
       ref={sectionRef}
       className="relative h-[350vh] bg-[#050505]"
       aria-label="Astronaut paper-throw reveal"

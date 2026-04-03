@@ -658,7 +658,7 @@ export default function VenturesPreview() {
   return (
     <>
       <style>{CSS}</style>
-      <section className="vc-wrap">
+      <section id="sagittarius" className="vc-wrap">
         <p className="vc-eyebrow">✦ &nbsp; Portfolio Arcana &nbsp; ✦</p>
         <div className="vc-row">
           <Link href="/sagittarius" className="vc-link">

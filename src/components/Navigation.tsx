@@ -8,9 +8,9 @@ import { GlassDock } from "./ui/GlassDock";
 const NAV_LINKS = [
   { label: "Home", href: "#home", sectionId: "home", icon: Home },
   { label: "About", href: "#about", sectionId: "about", icon: User },
-  { label: "Ventures", href: "#sagittarius", sectionId: "sagittarius", icon: Rocket },
+  { label: "Ventures", href: "#experience", sectionId: "experience", icon: Rocket },
   { label: "Projects", href: "#projects", sectionId: "projects", icon: FolderOpen },
-  { label: "Experience", href: "#experience", sectionId: "experience", icon: Briefcase },
+  { label: "Skills", href: "#tools", sectionId: "tools", icon: Briefcase },
   { label: "Contact", href: "#contact", sectionId: "contact", icon: Mail },
 ];
 

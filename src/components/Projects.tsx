@@ -547,11 +547,13 @@ const NavArrow = ({
   onClick,
   disabled,
   accent,
+  isVisible,
 }: {
   direction: 'left' | 'right';
   onClick: () => void;
   disabled: boolean;
   accent: string;
+  isVisible: boolean;
 }) => (
   <motion.button
     onClick={onClick}
@@ -563,10 +565,11 @@ const NavArrow = ({
       [direction === 'left' ? 'left' : 'right']: '24px',
       zIndex: 200, background: 'none', border: 'none',
       cursor: disabled ? 'default' : 'pointer',
-      opacity: disabled ? 0.15 : 0.7,
+      opacity: isVisible ? (disabled ? 0.15 : 0.7) : 0,
       color: '#fff', padding: '12px',
       transition: 'opacity 0.3s',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
+      pointerEvents: isVisible ? 'auto' : 'none',
     }}
   >
     {direction === 'left'
@@ -584,6 +587,7 @@ export default function Projects() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isCarouselInView, setIsCarouselInView] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -601,29 +605,67 @@ export default function Projects() {
     }
   });
 
+  // Track if carousel is visible in viewport
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsCarouselInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
   const goTo = useCallback((newIndex: number) => {
     if (newIndex < 0 || newIndex >= projects.length) return;
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Update state immediately for visual feedback
     setDirection(newIndex > activeIndex ? 1 : -1);
     setIsTransitioning(true);
     setActiveIndex(newIndex);
-    // Also scroll to match
-    if (containerRef.current) {
-      const step = 1 / projects.length;
-      const targetScroll = containerRef.current.scrollHeight * (step * newIndex + step * 0.5);
-      containerRef.current.scrollTop = targetScroll;
-    }
+
+    // Calculate target scroll position: container start + (project index * viewport height)
+    const targetScrollPos = container.offsetTop + (newIndex * window.innerHeight);
+
+    // Smooth scroll window to show the selected project
+    window.scrollTo({
+      top: targetScrollPos,
+      behavior: 'smooth',
+    });
+
     setTimeout(() => setIsTransitioning(false), 550);
   }, [activeIndex]);
 
-  // Keyboard navigation
+  // Keyboard navigation — context-aware to prevent global interference
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(activeIndex + 1);
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(activeIndex - 1);
+      // Only respond if carousel is visible
+      if (!isCarouselInView) return;
+
+      // Don't trigger if user is typing in an input or textarea
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        goTo(activeIndex + 1);
+      }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        goTo(activeIndex - 1);
+      }
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [activeIndex, goTo]);
+  }, [activeIndex, goTo, isCarouselInView]);
 
   const currentProject = projects[activeIndex];
 
@@ -724,12 +766,14 @@ export default function Projects() {
             onClick={() => goTo(activeIndex - 1)}
             disabled={activeIndex === 0}
             accent={currentProject.accent}
+            isVisible={isCarouselInView}
           />
           <NavArrow
             direction="right"
             onClick={() => goTo(activeIndex + 1)}
             disabled={activeIndex === projects.length - 1}
             accent={currentProject.accent}
+            isVisible={isCarouselInView}
           />
 
           {/* Vertical slide nav dots (right side) */}

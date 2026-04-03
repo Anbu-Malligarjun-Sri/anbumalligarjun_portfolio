@@ -56,22 +56,22 @@ function LetterPaper({ time, visible }: { time: string; visible: boolean }) {
       fontFamily: "Georgia,serif",
     }}>
 
-      {/* paper line texture */}
+      {/* ── OPTIONAL: RULED NOTEBOOK LINES ──
+          Uncomment the code below to add horizontal ruled lines (notebook style) to the footer background.
+          To enable: Remove the opening /* and closing 
+      */}
+      {/*
       <div style={{
         position: "absolute", inset: 0, opacity: 0.025, pointerEvents: "none", zIndex: 0,
         backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(255,255,255,0.9) 23px,rgba(255,255,255,0.9) 24px)",
       }} />
-
-      {/* top crease */}
-      <div style={{ height: 1.5, background: "linear-gradient(90deg,transparent 2%,rgba(255,255,255,0.07) 20%,rgba(255,255,255,0.1) 50%,rgba(255,255,255,0.07) 80%,transparent 98%)", position: "relative", zIndex: 1 }} />
-      <div style={{ height: 1,   background: "linear-gradient(90deg,transparent 2%,rgba(0,0,0,0.7) 20%,rgba(0,0,0,0.9) 50%,rgba(0,0,0,0.7) 80%,transparent 98%)", position: "relative", zIndex: 1 }} />
+      */}
 
       {/* ── LETTERHEAD ── */}
       <motion.div {...fu(0)} style={{
         background: "linear-gradient(135deg,#064e3b 0%,#065f46 60%,#047857 100%)",
         padding: "18px 28px 16px",
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        borderBottom: "3px solid #10b981",
         position: "relative", overflow: "hidden", zIndex: 1,
       }}>
         <div style={{ position: "absolute", inset: 0, opacity: 0.06,
@@ -132,7 +132,7 @@ function LetterPaper({ time, visible }: { time: string; visible: boolean }) {
           {/* NAV */}
           <motion.div {...fu(4)}>
             <div style={{ fontSize: 7.5, letterSpacing: "0.2em", color: "#9ca3af", marginBottom: 10, fontFamily: "monospace", textTransform: "uppercase",
-              paddingBottom: 6, borderBottom: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", gap: 5 }}>
+              paddingBottom: 6, display: "flex", alignItems: "center", gap: 5 }}>
               <span style={{ width: 12, height: 1.5, background: "#10b981", borderRadius: 1, display: "inline-block" }} />
               Navigate
             </div>
@@ -154,7 +154,7 @@ function LetterPaper({ time, visible }: { time: string; visible: boolean }) {
           {/* VENTURES */}
           <motion.div {...fu(4)}>
             <div style={{ fontSize: 7.5, letterSpacing: "0.2em", color: "#9ca3af", marginBottom: 10, fontFamily: "monospace", textTransform: "uppercase",
-              paddingBottom: 6, borderBottom: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", gap: 5 }}>
+              paddingBottom: 6, display: "flex", alignItems: "center", gap: 5 }}>
               <span style={{ width: 12, height: 1.5, background: "#10b981", borderRadius: 1, display: "inline-block" }} />
               Ventures
             </div>
@@ -175,7 +175,7 @@ function LetterPaper({ time, visible }: { time: string; visible: boolean }) {
           {/* NETWORK */}
           <motion.div {...fu(4)}>
             <div style={{ fontSize: 7.5, letterSpacing: "0.2em", color: "#9ca3af", marginBottom: 10, fontFamily: "monospace", textTransform: "uppercase",
-              paddingBottom: 6, borderBottom: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", gap: 5 }}>
+              paddingBottom: 6, display: "flex", alignItems: "center", gap: 5 }}>
               <span style={{ width: 12, height: 1.5, background: "#10b981", borderRadius: 1, display: "inline-block" }} />
               Network
             </div>
@@ -202,7 +202,6 @@ function LetterPaper({ time, visible }: { time: string; visible: boolean }) {
 
         {/* ── EMAIL CTA ── */}
         <motion.div {...fu(12)} style={{ marginBottom: 18 }}>
-          <div style={{ height: 1, marginBottom: 14, background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.06) 40%,rgba(255,255,255,0.06) 60%,transparent)" }} />
           <a href="mailto:anbumalligarjun@gmail.com" style={{
             display: "inline-flex", alignItems: "center", gap: 8,
             padding: "8px 18px", borderRadius: "100px", textDecoration: "none",
@@ -222,7 +221,7 @@ function LetterPaper({ time, visible }: { time: string; visible: boolean }) {
 
         {/* ── SIGNATURE ── */}
         <motion.div {...fu(13)} style={{
-          borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: 14, paddingBottom: 22,
+          paddingTop: 14, paddingBottom: 22,
           display: "flex", justifyContent: "space-between", alignItems: "flex-end",
         }}>
           <div>
@@ -234,7 +233,6 @@ function LetterPaper({ time, visible }: { time: string; visible: boolean }) {
             }}>
               Anbu Malligarjun
             </div>
-            <div style={{ width: 180, height: 1, background: "linear-gradient(90deg,#10b981,transparent)", marginBottom: 6 }} />
             <div style={{ fontSize: 8.5, color: "#9ca3af", fontFamily: "monospace", letterSpacing: "0.05em" }}>
               © {year} Anbu Malligarjun · Matrix initialized.
             </div>
@@ -256,8 +254,7 @@ function LetterPaper({ time, visible }: { time: string; visible: boolean }) {
         </motion.div>
       </div>
 
-      {/* bottom crease */}
-      <div style={{ height: 1.5, background: "linear-gradient(90deg,transparent 2%,rgba(255,255,255,0.07) 20%,rgba(255,255,255,0.1) 50%,rgba(255,255,255,0.07) 80%,transparent 98%)", position: "relative", zIndex: 1 }} />
+
     </div>
   );
 }

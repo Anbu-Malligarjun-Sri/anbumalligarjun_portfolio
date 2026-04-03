@@ -147,10 +147,14 @@ export const GlassDock = React.forwardRef<HTMLDivElement, GlassDockProps>(
             if (el.onClick) {
               el.onClick();
             } else if (el.href) {
-              const target = document.querySelector(el.href);
-              if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
+              // Check if it's an anchor link (starts with #)
+              if (el.href.startsWith('#')) {
+                const target = document.querySelector(el.href);
+                if (target) {
+                  target.scrollIntoView({ behavior: 'smooth' });
+                }
               } else {
+                // It's a page route, navigate to it
                 window.location.href = el.href;
               }
             }

@@ -294,7 +294,7 @@ export default function Hero() {
           >
             {/* Outlined teal button */}
             <a
-              href="#contact"
+              href="#experience"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

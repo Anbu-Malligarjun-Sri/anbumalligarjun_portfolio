@@ -2,15 +2,15 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
-import { Home, Briefcase, FolderOpen, User, Mail, Rocket, Menu, X } from "lucide-react";
+import { Home, Briefcase, FolderOpen, User, Mail, Rocket, Menu, X, Sparkles } from "lucide-react";
 import { GlassDock } from "./ui/GlassDock";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home", sectionId: "home", icon: Home },
   { label: "About", href: "#about", sectionId: "about", icon: User },
-  { label: "Ventures", href: "#experience", sectionId: "experience", icon: Rocket },
+  { label: "Journey", href: "#experience", sectionId: "experience", icon: Rocket },
+  { label: "Skills", href: "#tools", sectionId: "tools", icon: Sparkles },
   { label: "Projects", href: "#projects", sectionId: "projects", icon: FolderOpen },
-  { label: "Skills", href: "#tools", sectionId: "tools", icon: Briefcase },
   { label: "Contact", href: "#contact", sectionId: "contact", icon: Mail },
 ];
 

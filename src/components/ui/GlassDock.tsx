@@ -76,21 +76,15 @@ export const GlassDock = React.forwardRef<HTMLDivElement, GlassDockProps>(
           {hoveredIndex !== null && (
             <motion.div
               layout
-              initial={{ opacity: 0, scale: 0.92, y: 12 }}
+              // Adjusted Y values to animate from slightly above the center to fully above the dock
+              initial={{ opacity: 0, scale: 0.92, y: 0 }}
               animate={{
                 opacity: 1,
                 scale: 1,
-                y: -65,
-                /**
-                 * `tooltipX` is the absolute left-center of the hovered
-                 * item (set via itemRefs on hover). The inner tooltip div
-                 * uses `-translate-x-1/2` so it auto-centers over the item.
-                 * Removing the conflicting outer `style.transform` that
-                 * was fighting Framer Motion's own transform management.
-                 */
+                y: -24, // Moves the tooltip up above the icons
                 x: tooltipX,
               }}
-              exit={{ opacity: 0, scale: 0.92, y: 12 }}
+              exit={{ opacity: 0, scale: 0.92, y: 0 }}
               transition={{ type: 'spring', stiffness: 150, damping: 20 }}
               className="absolute top-0 left-0 pointer-events-none z-30"
             >
@@ -132,7 +126,8 @@ export const GlassDock = React.forwardRef<HTMLDivElement, GlassDockProps>(
                     </motion.span>
                   </AnimatePresence>
                 </div>
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-neon" />
+                {/* Pointer is naturally pointing down since it sits at the bottom (-bottom-1) of the tooltip */}
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-[-45deg] bg-neon" />
               </div>
             </motion.div>
           )}
@@ -142,6 +137,7 @@ export const GlassDock = React.forwardRef<HTMLDivElement, GlassDockProps>(
           const Icon = el.icon;
           const isHovered = hoveredIndex === index;
           const isActive = activeItem === el.href?.replace('#', '') || activeItem === el.title.toLowerCase();
+          const isSkillsButton = el.title === 'Skills';
           
           const handleClick = () => {
             if (el.onClick) {
@@ -184,6 +180,7 @@ export const GlassDock = React.forwardRef<HTMLDivElement, GlassDockProps>(
                 animate={{
                   scale: isHovered ? 1.2 : 1,
                   y: isHovered ? -2 : 0,
+                  rotate: isSkillsButton && isHovered ? 12 : 0,
                 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 24 }}
               >
@@ -192,7 +189,8 @@ export const GlassDock = React.forwardRef<HTMLDivElement, GlassDockProps>(
                   strokeWidth={isActive ? 2.5 : 2}
                   className={cn(
                     'transition-colors duration-300',
-                    isActive && "animate-pulse"
+                    isActive && "animate-pulse",
+                    isSkillsButton && isHovered && "animate-spin [animation-duration:2s]"
                   )}
                 />
               </motion.div>

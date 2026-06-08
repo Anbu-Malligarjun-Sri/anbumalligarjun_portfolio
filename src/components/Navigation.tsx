@@ -8,7 +8,7 @@ import { GlassDock } from "./ui/GlassDock";
 const NAV_LINKS = [
   { label: "Home", href: "#home", sectionId: "home", icon: Home },
   { label: "About", href: "#about", sectionId: "about", icon: User },
-  { label: "Journey", href: "#experience", sectionId: "experience", icon: Rocket },
+  { label: "Journey", href: "#sagittarius", sectionId: "sagittarius", icon: Rocket },
   { label: "Skills", href: "#tools", sectionId: "tools", icon: Sparkles },
   { label: "Projects", href: "#projects", sectionId: "projects", icon: FolderOpen },
   { label: "Contact", href: "#contact", sectionId: "contact", icon: Mail },
@@ -29,29 +29,62 @@ export default function Navigation() {
    */
   const lastScrollY = useRef(0);
 
-  // Active section tracking via IntersectionObserver
+  // Store the active section in a ref to avoid dependencies
+  const activeSectionRef = useRef(activeSection);
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
+    activeSectionRef.current = activeSection;
+  }, [activeSection]);
 
-    SECTION_IDS.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
+  // Active section tracking via scroll position - only set up once
+  useEffect(() => {
+    let animationFrameId: number;
 
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(id);
+    const handleScroll = () => {
+      // Cancel previous animation frame
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+
+      // Use requestAnimationFrame for smooth, performant scroll tracking
+      animationFrameId = requestAnimationFrame(() => {
+        const sections = SECTION_IDS.map((id) => {
+          const el = document.getElementById(id);
+          if (!el) return null;
+          const rect = el.getBoundingClientRect();
+          return { id, top: rect.top, height: rect.height };
+        }).filter((s) => s !== null) as Array<{ id: string; top: number; height: number }>;
+
+        if (sections.length === 0) return;
+
+        // Find the section with the largest visible area in the viewport
+        let mostVisibleSection = sections[0];
+        let maxVisibleArea = 0;
+
+        for (const section of sections) {
+          // Calculate how much of this section is visible in the viewport
+          const sectionTop = Math.max(0, section.top);
+          const sectionBottom = Math.min(window.innerHeight, section.top + section.height);
+          const visibleArea = Math.max(0, sectionBottom - sectionTop);
+
+          if (visibleArea > maxVisibleArea) {
+            maxVisibleArea = visibleArea;
+            mostVisibleSection = section;
           }
-        },
-        { threshold: 0.35, rootMargin: "-80px 0px -40% 0px" }
-      );
+        }
 
-      observer.observe(el);
-      observers.push(observer);
-    });
+        // Only update if there's actual visible content and section changed
+        if (maxVisibleArea > 50 && mostVisibleSection.id !== activeSectionRef.current) {
+          setActiveSection(mostVisibleSection.id);
+        }
+      });
+    };
 
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Call once on mount
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
+  }, []); // Empty dependency array - only set up once
 
   // Close mobile menu on Escape key (accessibility)
   useEffect(() => {

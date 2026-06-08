@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
 import AstronautReveal from "@/components/AstronautReveal";
 import VenturesPreview from "@/components/VenturesPreview";
-import Projects from "@/components/Projects";
+import Projects from "@/components/Projects_new_1";
 import InternshipsTimeline from "@/components/InternshipsTimeline";
 import ToolsSection from "@/components/ToolsSection";
 import Contact from "@/components/Contact";

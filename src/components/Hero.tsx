@@ -191,12 +191,7 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* ── FIXED LEFT MARGIN RULE — editorial grid marker ── */}
-      <div
-        className="pointer-events-none absolute inset-y-0 z-10 hidden lg:block"
-        style={{ left: "clamp(32px, 4vw, 64px)", width: 1, background: "rgba(255,255,255,0.08)" }}
-        aria-hidden="true"
-      />
+
 
       {/* ── TEXT CONTENT ── */}
       <div

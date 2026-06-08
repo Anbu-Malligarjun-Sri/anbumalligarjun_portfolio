@@ -375,6 +375,20 @@
         coreLight.position.set(0, 10, 0);
         scene.add(coreLight);
 
+        // -----------------------------------------------------------
+        // --- NEW EXTRA LIGHTING FOR TREE VISIBILITY ---
+        // -----------------------------------------------------------
+        // Front fill light targeting the tree from the camera's perspective
+        const treeFrontLight = new THREE.DirectionalLight(0xddeeff, 1.5);
+        treeFrontLight.position.set(0, 25, 50);
+        scene.add(treeFrontLight);
+
+        // Base uplight to illuminate the trunk structure from underneath 
+        const treeUnderLight = new THREE.PointLight(0x44aaff, 4, 60);
+        treeUnderLight.position.set(0, 0, 15);
+        scene.add(treeUnderLight);
+        // -----------------------------------------------------------
+
         // ═══════════════════════════════════════════════
         // PROCEDURAL TREE GENERATION (Smooth Curves)
         // ═══════════════════════════════════════════════
@@ -397,12 +411,6 @@
             const curve = new THREE.CatmullRomCurve3([start, mid, end]);
             const geo = new THREE.TubeGeometry(curve, 16, radiusStart, 8, false);
             
-            // Taper the geometry
-            const pos = geo.attributes.position;
-            for(let i=0; i<pos.count; i++){
-                const u = geo.parameters.path.getUtoTmapping(i / pos.count); // rough approximation
-                // To do true taper we manipulate vertices based on their along-curve distance
-            }
             // A simpler taper implementation for TubeGeometry:
             // Modify vertex distances from curve
             const tubeVerts = geo.attributes.position;

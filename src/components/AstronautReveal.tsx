@@ -345,11 +345,11 @@ export default function AstronautReveal() {
             </div>
 
             {/* Headline */}
-            <h2 className="font-sans text-[clamp(2.2rem,5.5vw,4.5rem)] font-bold leading-none tracking-[-0.035em] text-neutral-900">
+            <h2 className="font-sans text-[clamp(2.2rem,5.5vw,4.5rem)] font-bold leading-none tracking-[-0.035em] text-white">
               I build things
               <br />
               <span
-                className="bg-linear-to-r from-neutral-900 via-neutral-600 to-neutral-900 bg-clip-text text-transparent"
+                className="text-black"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 that matter.

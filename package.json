@@ -6,9 +6,10 @@
     "dev": "next dev -H 0.0.0.0 -p 5000",
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p 5000",
-    "lint": "next lint"
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@chenglou/pretext": "^0.0.4",
     "@emailjs/browser": "^4.4.1",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",

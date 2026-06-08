@@ -47,7 +47,7 @@ export default function Contact() {
         >
           {/* Card with subtle tinted background */}
           <div
-            className="relative w-full max-w-sm rounded-3xl px-12 py-14"
+            className="relative w-full max-w-sm rounded-3xl px-18 py-24"
             style={{
               background:
                 "linear-gradient(145deg, rgba(0,255,148,0.055) 0%, rgba(255,255,255,0.025) 55%, rgba(0,0,0,0) 100%)",

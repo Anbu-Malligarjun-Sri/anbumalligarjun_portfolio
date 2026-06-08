@@ -660,6 +660,17 @@ export default function VenturesPreview() {
       <style>{CSS}</style>
       <section id="sagittarius" className="vc-wrap">
         <p className="vc-eyebrow">✦ &nbsp; Portfolio Arcana &nbsp; ✦</p>
+        <h2 style={{
+          textAlign: 'center',
+          fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+          fontWeight: 'bold',
+          color: '#f0ece4',
+          marginBottom: '3rem',
+          letterSpacing: '-0.02em',
+          fontFamily: "'DM Serif Display', serif",
+        }}>
+          My Vision
+        </h2>
         <div className="vc-row">
           <Link href="/sagittarius" className="vc-link">
             <div className="vc-card vc-card-sag"><CardSagittarius /></div>

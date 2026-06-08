@@ -180,9 +180,19 @@ export const GlassDock = React.forwardRef<HTMLDivElement, GlassDockProps>(
                 animate={{
                   scale: isHovered ? 1.2 : 1,
                   y: isHovered ? -2 : 0,
-                  rotate: isSkillsButton && isHovered ? 12 : 0,
+                  // Unique animations per button
+                  ...(el.title === 'Home' && isHovered && { scaleY: 0.9 }),
+                  ...(el.title === 'About' && isHovered && { rotateY: 15 }),
+                  ...(el.title === 'Journey' && isHovered && { y: -6 }),
+                  ...(el.title === 'Skills' && isHovered && { rotate: 12 }),
+                  ...(el.title === 'Projects' && isHovered && { rotateZ: -8 }),
+                  ...(el.title === 'Contact' && isHovered && { x: 4 }),
                 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+                transition={{ 
+                  type: 'spring', 
+                  stiffness: 300, 
+                  damping: 24,
+                }}
               >
                 <Icon
                   size={20}

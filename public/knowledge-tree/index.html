@@ -349,7 +349,7 @@
         scene.add(ground);
 
         // Lights
-        const ambient = new THREE.AmbientLight(0x0a1525, 2.0);
+        const ambient = new THREE.AmbientLight(0x0a1525, 3.0);
         scene.add(ambient);
         
         const moonLight = new THREE.DirectionalLight(0x88bbff, 1.5);
@@ -366,7 +366,7 @@
         moonLight.shadow.bias = -0.001;
         scene.add(moonLight);
 
-        const rimLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        const rimLight = new THREE.DirectionalLight(0xffffff, 0.75);
         rimLight.position.set(20, 10, 30);
         scene.add(rimLight);
 
@@ -379,12 +379,12 @@
         // --- NEW EXTRA LIGHTING FOR TREE VISIBILITY ---
         // -----------------------------------------------------------
         // Front fill light targeting the tree from the camera's perspective
-        const treeFrontLight = new THREE.DirectionalLight(0xddeeff, 1.5);
+        const treeFrontLight = new THREE.DirectionalLight(0xddeeff, 2.2);
         treeFrontLight.position.set(0, 25, 50);
         scene.add(treeFrontLight);
 
         // Base uplight to illuminate the trunk structure from underneath 
-        const treeUnderLight = new THREE.PointLight(0x44aaff, 4, 60);
+        const treeUnderLight = new THREE.PointLight(0x44aaff, 5.5, 60);
         treeUnderLight.position.set(0, 0, 15);
         scene.add(treeUnderLight);
         // -----------------------------------------------------------
@@ -395,10 +395,10 @@
         const treeGroup = new THREE.Group();
         scene.add(treeGroup);
 
-        const barkMat = new THREE.MeshStandardMaterial({ 
-            color: 0x0a0a0d, 
-            roughness: 0.9, 
-            metalness: 0.2,
+        const barkMat = new THREE.MeshStandardMaterial({
+            color: 0x24242a,
+            roughness: 0.78,
+            metalness: 0.12,
             bumpScale: 0.05
         });
 

@@ -105,12 +105,12 @@ const Gem = ({ g, y, bg }: { g: string; y: number; bg: string }) => (
 );
 
 /* ══════════════════════════════════════════════════════
-   CARD 1 · SAGITTARIUS
+   CARD 1 · SAGITTARIUZ
    Theme: The Sacred Ψ (Psi) — cosmic trident of the archer-god.
    Deep violet nebula, concentric geometric rings, star field,
    subtle constellation, golden Psi as the hero centrepiece.
 ══════════════════════════════════════════════════════ */
-function CardSagittarius() {
+function CardSagittariuz() {
   /* Every value is a literal — zero Math.random() */
   const STARS: [number, number, number, number, number][] = [
     [30,42,.8,3.2,.45],[48,28,1.0,4.8,.55],[68,38,.7,3.6,.40],[90,25,1.1,5.2,.60],
@@ -124,7 +124,7 @@ function CardSagittarius() {
     [50,112,.5,4.3,.30],[210,108,.6,3.7,.35],[45,145,.6,5.0,.35],[215,142,.5,4.2,.30],
   ];
 
-  /* Sagittarius teapot constellation */
+  /* Sagittariuz constellation */
   const CN: [number,number,number][] = [
     [76,205,2.8],[90,188,2.0],[103,172,2.5],[116,158,2.0],
     [130,168,1.8],[148,152,3.0],[162,170,1.8],[170,188,1.8],
@@ -283,36 +283,15 @@ function CardSagittarius() {
             points={`${px},${py-5.5} ${px+3},${py} ${px},${py+5.5} ${px-3},${py}`} />
         ))}
 
-        {/* ══ THE Ψ (PSI) ══
-            Three text layers: deep blur glow → mid glow → crisp gold face
-            Using font-rendered Ψ from Cinzel for max elegance.
-        */}
-        <g style={{ animation: 'vc-psi-glow 3.2s ease-in-out infinite' }}>
-          {/* Deep purple bloom */}
-          <text x="126" y="190"
-            fontFamily="'Cinzel',serif" fontWeight="700" fontSize="118"
-            textAnchor="middle" fill="rgba(160,100,255,0.09)"
-            filter="url(#sg-psif)">Ψ</text>
-          {/* Soft white glow ring */}
-          <text x="126" y="190"
-            fontFamily="'Cinzel',serif" fontWeight="700" fontSize="118"
-            textAnchor="middle" fill="rgba(230,210,255,0.13)"
-            filter="url(#sg-psif)">Ψ</text>
-          {/* Gold face */}
-          <text x="126" y="190"
-            fontFamily="'Cinzel',serif" fontWeight="700" fontSize="118"
-            textAnchor="middle" fill="url(#sg-gold)" opacity=".95">Ψ</text>
-          {/* Crisp highlight stroke */}
-          <text x="126" y="190"
-            fontFamily="'Cinzel',serif" fontWeight="700" fontSize="118"
-            textAnchor="middle" fill="none"
-            stroke="rgba(250,235,150,0.28)" strokeWidth=".6">Ψ</text>
-        </g>
-
-        {/* Accent jewels at Psi arm-tips */}
-        <circle cx="73"  cy="104" r="4" fill="url(#sg-gold)" opacity=".7" filter="url(#sg-starglow)" />
-        <circle cx="179" cy="104" r="4" fill="url(#sg-gold)" opacity=".7" filter="url(#sg-starglow)" />
-        <circle cx="126" cy="88"  r="4" fill="url(#sg-gold)" opacity=".7" filter="url(#sg-starglow)" />
+        {/* Sagittariuz brand logo */}
+        <image
+          href="/Images/sagittariuz.png"
+          x="38"
+          y="74"
+          width="176"
+          height="176"
+          preserveAspectRatio="xMidYMid meet"
+        />
 
         {/* Constellation — subtle, lower portion */}
         <g style={{ animation: 'vc-constell 5s ease-in-out infinite' }} opacity=".55">
@@ -343,12 +322,8 @@ function CardSagittarius() {
 
       {/* Text area */}
       <rect x="22" y="272" width="208" height="52" fill="#06040e" />
-      <text x="126" y="295" fontFamily="'Cinzel',serif" fontWeight="700" fontSize="16"
-        fill="url(#sg-gold)" textAnchor="middle" letterSpacing="4">SAGITTARIUS</text>
-      <text x="126" y="311" fontFamily="'Cormorant Garamond',serif" fontStyle="italic" fontSize="9.5"
-        fill="rgba(200,146,42,.65)" textAnchor="middle" letterSpacing="1.5">The Celestial Archer</text>
-      <text x="126" y="322" fontFamily="'Cinzel',serif" fontSize="7"
-        fill="rgba(200,146,42,.38)" textAnchor="middle" letterSpacing="2.5">DE-EXTINCTION · BIOTECHNOLOGY</text>
+      <text x="126" y="295" fontFamily="'Cinzel',serif" fontWeight="700" fontSize="13"
+        fill="url(#sg-gold)" textAnchor="middle" letterSpacing="3">SAGITTARIUZ</text>
 
       <Gem g="sg-gold" y={14}  bg="#06040e" />
       <Gem g="sg-gold" y={344} bg="#06040e" />
@@ -658,7 +633,7 @@ export default function VenturesPreview() {
   return (
     <>
       <style>{CSS}</style>
-      <section id="sagittarius" className="vc-wrap">
+      <section id="sagittariuz" className="vc-wrap">
         <p className="vc-eyebrow">✦ &nbsp; Portfolio Arcana &nbsp; ✦</p>
         <h2 style={{
           textAlign: 'center',
@@ -672,9 +647,9 @@ export default function VenturesPreview() {
           My Vision
         </h2>
         <div className="vc-row">
-          <Link href="/sagittarius" className="vc-link">
-            <div className="vc-card vc-card-sag"><CardSagittarius /></div>
-          </Link>
+          <a href="https://www.sagittariuz.com/" target="_blank" rel="noopener noreferrer" className="vc-link">
+            <div className="vc-card vc-card-sag"><CardSagittariuz /></div>
+          </a>
           <Link href="/youtube" className="vc-link">
             <div className="vc-card vc-card-sci"><CardSciTech /></div>
           </Link>

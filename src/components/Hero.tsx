@@ -200,28 +200,6 @@ export default function Hero() {
       >
         <motion.div className="max-w-130" style={{ y: contentY }}>
 
-          {/* Decorative entry line + role label */}
-          <motion.div
-            initial={{ opacity: 0, x: -16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-            className="mb-3 flex items-center gap-4"
-          >
-            {/* 40px horizontal rule */}
-            <div className="h-px w-10 bg-white/20 shrink-0" />
-            <span
-              style={{
-                fontFamily: "var(--font-jetbrains-mono), monospace",
-                fontSize: "10px",
-                letterSpacing: "0.3em",
-                color: "rgba(0,255,148,0.55)",
-                textTransform: "uppercase",
-              }}
-            >
-              AI · Biology · Education
-            </span>
-          </motion.div>
-
           {/* Name block — Cormorant Garamond italic, tight leading */}
           <h1 style={{ lineHeight: 1, marginBottom: "clamp(1.5rem, 3vw, 2.5rem)" }}>
             <AnimatedTitle
@@ -273,11 +251,15 @@ export default function Hero() {
               marginBottom: "clamp(2rem, 4vw, 3rem)",
             }}
           >
-            Building at the intersection of{" "}
-            <span style={{ color: "#2FFFB0" }}>AI</span>,{" "}
-            <span style={{ color: "#2FFFB0" }}>Biology</span>, and{" "}
-            <span style={{ color: "#2FFFB0" }}>Education</span>{" "}
-            — engineering a future where technology restores what nature has lost.
+            Software Engineer by profession,{" "}
+            <strong style={{ color: "#2FFFB0", fontWeight: 700 }}>
+              Entrepreneur by ambition
+            </strong>
+            . Building at the intersection of{" "}
+            <strong style={{ color: "#2FFFB0", fontWeight: 700 }}>
+              AI, Technology, and Innovation
+            </strong>{" "}
+            — transforming bold ideas into meaningful experiences and shaping what comes next.
           </motion.p>
 
           {/* CTA Buttons */}

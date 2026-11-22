@@ -203,7 +203,7 @@ export default function About() {
               className="about-p text-[15px] leading-[1.9] text-stark-muted"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              Beyond code, I founded Sagittarius Technologies and Sam SciTech —
+              Beyond code, I founded Sagittariuz and Sam SciTech —
               bridging science education and entrepreneurship.
             </p>
 

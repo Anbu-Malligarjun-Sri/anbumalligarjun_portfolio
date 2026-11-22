@@ -18,7 +18,7 @@ const NAV_LINKS = [
   { label: "Contact",        href: "#contact"    },
 ];
 const VENTURE_LINKS = [
-  { label: "Sagittarius",    href: "/sagittarius", desc: "AI Research Startup" },
+  { label: "Sagittariuz",    href: "https://www.sagittariuz.com/", desc: "AI Research Startup" },
   { label: "Sam SciTech",    href: "/youtube",     desc: "Science YouTube"     },
   { label: "Words & Worlds", href: "/writing",     desc: "Writing & Essays"    },
 ];
